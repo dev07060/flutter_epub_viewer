@@ -1,16 +1,59 @@
-# flutter_epub_viewer
+# Flutter Epub Viewer
 
-A new Flutter project.
+Flutter를 사용하여 개발한 간단한 Epub 콘텐츠 뷰어 포트폴리오 프로젝트입니다.
 
-## Getting Started
+## 🎯 프로젝트 목표
 
-This project is a starting point for a Flutter application.
+본 프로젝트는 Flutter를 사용하여 사용자가 로컬 기기에서 Epub 파일을 로드하고, 내부 콘텐츠(HTML/CSS)를 웹뷰를 통해 렌더링하며, 기본적인 독서 편의 기능을 제공하는 것을 목표로 합니다. 이를 통해 Flutter의 선언형 UI 개발 능력, 모바일 아키텍처에 대한 이해, 그리고 웹 기술(WebView)을 활용한 콘텐츠 처리 능력을 보여주고자 합니다.
 
-A few resources to get you started if this is your first Flutter project:
+## ✨ 주요 기능
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+- **Epub 파일 로드**: `file_picker`를 사용하여 사용자가 기기에서 `.epub` 파일을 선택할 수 있습니다.
+- **Epub 콘텐츠 파싱**: `archive` 패키지로 압축을 해제하고, `xml` 패키지로 `container.xml`, `.opf`, `.ncx` 파일을 파싱하여 책의 메타데이터, 챕터 순서, 목차를 추출합니다.
+- **웹뷰 기반 렌더링**: `webview_flutter`를 사용하여 파싱된 HTML 챕터를 렌더링합니다.
+- **목차(TOC) 기능**: 파싱된 목차를 별도 화면에 표시하고, 특정 챕터로 즉시 이동할 수 있습니다.
+- **독서 편의 기능**:
+  - **글자 크기 조절**: JavaScript를 웹뷰에 주입하여 동적으로 글자 크기를 조절합니다.
+  - **테마 변경**: 다크 모드/라이트 모드 전환 기능을 제공하여 사용자의 가독성을 높입니다.
+- **북마크**: `shared_preferences`를 사용하여 마지막으로 읽은 챕터를 저장하고 이어볼 수 있습니다.
+- **메타데이터 보기**: 책의 커버 이미지, 제목, 저자 정보를 별도 화면에서 확인할 수 있습니다.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 📸 스크린샷
+
+*(여기에 홈 화면, 뷰어 화면(라이트/다크), 목차 화면 스크린샷 또는 GIF를 추가하세요.)*
+
+| 홈 화면 | 뷰어 (라이트) | 뷰어 (다크) | 목차 |
+| :---: | :---: | :---: | :---: |
+| (이미지) | (이미지) | (이미지) | (이미지) |
+
+## 🛠️ 사용 기술 스택 및 아키텍처
+
+- **Framework**: Flutter
+- **State Management**: Provider
+- **Architecture**: MVVM (Model-View-ViewModel) 패턴을 간소화하여 적용
+  - **Model**: `EpubBook`, `EpubChapter` 등 데이터 모델
+  - **View**: `HomeScreen`, `ViewerScreen` 등 UI를 담당하는 위젯
+  - **ViewModel**: `BookNotifier`가 View와 Model 사이의 중재자 역할을 하며, 비즈니스 로직과 상태를 관리합니다.
+- **Asynchronous Programming**: `Future`, `async/await`를 사용하여 파일 I/O 및 파싱 등 시간이 많이 걸리는 작업을 처리하고 UI 스레드 막힘을 방지합니다.
+- **Dependencies**:
+  - `webview_flutter`: 핵심 콘텐츠 렌더링
+  - `provider`: 상태 관리
+  - `archive`: Epub(zip) 압축 해제
+  - `xml`: OPF/NCX 메타데이터 파싱
+  - `file_picker`: 로컬 파일 접근
+  - `path_provider`: 임시 디렉토리 경로 관리
+  - `shared_preferences`: 북마크 등 간단한 데이터 영속성 관리
+
+## 💡 도전 과제 및 해결 방안
+
+### 1. Epub 파싱의 복잡성 및 안정성 문제
+- **도전 과제**: Epub 파일은 표준이 있지만, 제작사에 따라 XML 구조가 미묘하게 다르거나 특정 메타데이터가 누락된 경우가 많았습니다. `.first`와 같이 불안정한 접근 방식은 앱 크래시를 유발했습니다.
+- **해결 방안**: XML 노드에 접근할 때 `.first` 대신, `isNotEmpty`로 존재 여부를 먼저 확인하는 안전한 확장 함수(Extension)를 구현했습니다. 이를 통해 특정 태그가 없더라도 크래시 없이 기본값(예: 'Untitled')으로 처리하도록 로직을 개선하여 다양한 포맷의 Epub 파일에 대한 안정성을 높였습니다.
+
+### 2. Flutter와 WebView 간의 상태 동기화
+- **도전 과제**: Flutter UI(예: 설정 버튼)와 WebView 내부 콘텐츠(HTML/CSS) 간의 상태를 실시간으로 동기화하는 것이 어려웠습니다. 예를 들어, Flutter에서 글자 크기 변경 버튼을 누르면 WebView의 텍스트 크기가 즉시 변경되어야 했습니다.
+- **해결 방안**: `WebViewController`의 `runJavaScript` 메서드를 적극적으로 활용했습니다. `BookNotifier`에 글꼴 크기, 테마 등 뷰어의 상태를 저장하고, 이 상태가 변경될 때마다 해당 상태를 CSS로
+
+### 3. 상태 영속성 관리 (북마크)
+- **도전 과제**: 앱을 재시작하더라도 사용자의 독서 진행 상황을 유지해야 했습니다. 각 책마다 고유한 식별자를 정하고, 해당 위치를 안정적으로 저장하고 불러오는 방법이 필요했습니다.
+- **해결 방안**: `shared_preferences`를 사용하여 Key-Value 형태로 데이터를 저장했습니다. 책의 고유 키로는 책 파일의 경로 대신, 압축 해제된 임시 폴더 경로의 `hashCode`를 사용하여 간결하고 유일한 키를 생성했습니다. `BookNotifier`에서 책을 로드할 때 이 키를 사용해 저장된 챕터 인덱스를 불러오고, 뷰어 화면에서 북마크 버튼을 누르면 현재 챕터 인덱스를 저장하도록 구현했습니다.
