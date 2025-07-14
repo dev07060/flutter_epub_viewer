@@ -27,8 +27,7 @@
 		33CC10F32044A3C60003C045 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F22044A3C60003C045 /* Assets.xcassets */; };
 		33CC10F62044A3C60003C045 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 33CC10F42044A3C60003C045 /* MainMenu.xib */; };
 		33CC11132044BFA00003C045 /* MainFlutterWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 33CC11122044BFA00003C045 /* MainFlutterWindow.swift */; };
-		4632AAE02E24DC24002FD4EF /* Chromium Embedded Framework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4632AADF2E24DC24002FD4EF /* Chromium Embedded Framework.framework */; };
-		4632AAE12E24DC24002FD4EF /* Chromium Embedded Framework.framework in Bundle Framework */ = {isa = PBXBuildFile; fileRef = 4632AADF2E24DC24002FD4EF /* Chromium Embedded Framework.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+
 		4632AAE32E24E033002FD4EF /* CefView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632AAE22E24E033002FD4EF /* CefView.swift */; };
 		4632AAE52E24E053002FD4EF /* CefViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4632AAE42E24E053002FD4EF /* CefViewFactory.swift */; };
 		6FBF6DB2BBB762B5E93C4497 /* Pods_RunnerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4513F6B5E7F8018528D9B9C3 /* Pods_RunnerTests.framework */; };
@@ -59,7 +58,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4632AAE12E24DC24002FD4EF /* Chromium Embedded Framework.framework in Bundle Framework */,
 			);
 			name = "Bundle Framework";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -85,7 +83,7 @@
 		33E51914231749380026EE4D /* Release.entitlements */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.entitlements; path = Release.entitlements; sourceTree = "<group>"; };
 		33E5194F232828860026EE4D /* AppInfo.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = AppInfo.xcconfig; sourceTree = "<group>"; };
 		4513F6B5E7F8018528D9B9C3 /* Pods_RunnerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RunnerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4632AADF2E24DC24002FD4EF /* Chromium Embedded Framework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = "Chromium Embedded Framework.framework"; path = "cef_bin/Chromium Embedded Framework.framework"; sourceTree = "<group>"; };
+
 		4632AAE22E24E033002FD4EF /* CefView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CefView.swift; sourceTree = "<group>"; };
 		4632AAE42E24E053002FD4EF /* CefViewFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CefViewFactory.swift; sourceTree = "<group>"; };
 		5F13980E8F2EBBB39AE4E535 /* Pods-RunnerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RunnerTests.release.xcconfig"; path = "Target Support Files/Pods-RunnerTests/Pods-RunnerTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -111,7 +109,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4632AAE02E24DC24002FD4EF /* Chromium Embedded Framework.framework in Frameworks */,
 				D0E626F8D2BA87B771CF1840 /* Pods_Runner.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -213,7 +210,6 @@
 		D73912EC22F37F3D000D13A0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4632AADF2E24DC24002FD4EF /* Chromium Embedded Framework.framework */,
 				930C00BE4841944986405069 /* Pods_Runner.framework */,
 				4513F6B5E7F8018528D9B9C3 /* Pods_RunnerTests.framework */,
 			);
