@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:webview_flutter/webview_flutter.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 import '../models/epub_book.dart';
 import '../services/epub_service.dart';
@@ -94,9 +94,10 @@ class BookNotifier extends ChangeNotifier {
     // This JS code will be executed in the webview.
     // It sets the font size on the body and changes background/text color.
     // Using a try-catch block inside JS is a safeguard.
-    final script = """
+    final script =
+        """
       try {
-        document.body.style.fontSize = '${_fontSize}%';
+        document.body.style.fontSize = '$_fontSize%';
         document.body.style.backgroundColor = '$bgColor';
         document.body.style.color = '$textColor';
         

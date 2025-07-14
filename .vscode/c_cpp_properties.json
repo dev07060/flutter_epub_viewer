@@ -1,27 +1,38 @@
 {
     "configurations": [
         {
-            "name": "macOS",
+            "name": "Mac",
             "includePath": [
                 "${workspaceFolder}/**",
-                // CEF 헤더 파일 경로
-                "${workspaceFolder}/macos/third/cef/include/**",
-                // Flutter macOS 엔진 헤더 파일 경로
-                "${workspaceFolder}/macos/Flutter/ephemeral/.symlinks/flutter/darwin-x64/FlutterMacOS.framework/Headers/**"
+                // =================================================================
+                // 중요: CEF 바이너리 배포판의 최상위 폴더 경로를 여기에 추가하세요.
+                // 'include' 폴더와 'libcef_wrapper' 폴더 등이 포함된 경로입니다.
+                // 예시: "${workspaceFolder}/macos/cef_binary"
+                // =================================================================
+                "${workspaceFolder}/macos/cef_bin"
             ],
+            "defines": [],
+            // macOS 시스템 프레임워크 경로를 지정합니다. Xcode 위치에 따라 다를 수 있습니다.
             "macFrameworkPath": [
-                // 시스템 프레임워크 경로
-                "/System/Library/Frameworks",
-                "/Library/Frameworks",
-                // Flutter 프레임워크 경로
-                "${workspaceFolder}/macos/Flutter/ephemeral/.symlinks/flutter/darwin-x64",
-                // CEF 프레임워크 경로 (Release 또는 Debug 빌드에 맞게 조정)
-                "${workspaceFolder}/macos/third/cef/Release"
+                "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/System/Library/Frameworks",
+                "/System/Library/Frameworks"
             ],
             "compilerPath": "/usr/bin/clang",
             "cStandard": "c17",
             "cppStandard": "c++17",
-            "intelliSenseMode": "macos-clang-x64"
+            "intelliSenseMode": "macos-clang-x64",
+            "compilerArgs": [
+                "-x",
+                "objective-c++",
+                "-framework",
+                "Foundation",
+                // AppKit 프레임워크(NSView 등)를 인식시키기 위해 추가합니다.
+                "-framework",
+                "AppKit",
+                // Flutter 프레임워크 경로를 추가합니다.
+                "-F",
+                "${workspaceFolder}/macos/Flutter/ephemeral"
+            ]
         }
     ],
     "version": 4
