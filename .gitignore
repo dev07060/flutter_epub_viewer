@@ -43,3 +43,7 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# CEF (Chromium Embedded Framework) binaries
+macos/cef_bin/
+macos/third/
