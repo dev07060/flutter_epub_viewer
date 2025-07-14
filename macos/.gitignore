@@ -5,3 +5,7 @@
 # Xcode-related
 **/dgph
 **/xcuserdata/
+
+# CEF (Chromium Embedded Framework) binaries
+cef_bin/
+third/
