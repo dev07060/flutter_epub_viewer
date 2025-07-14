@@ -16,12 +16,14 @@
             "flutterMode": "profile"
         },
         {
-            "name": "Flutter (Release)",
+            "name": "Flutter (MacOS)",
             "type": "dart",
             "request": "launch",
             "program": "lib/main.dart",
-            "flutterMode": "release"
-        },
+            "args": [
+                "-d",
+                "macos"
+            ]        },
         {
             "name": "Flutter (iPad 10)",
             "type": "dart",

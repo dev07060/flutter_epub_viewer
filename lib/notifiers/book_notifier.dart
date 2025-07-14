@@ -115,15 +115,17 @@ class BookNotifier extends ChangeNotifier {
   }
 
   /// Clears the current book data when the viewer is closed.
-  void clearBook() {
+  void clearBook({bool notify = true}) {
     // We keep the webViewController reference until the screen is disposed
     // but clear the book data.
     _currentBook = null;
     // Reset settings to default
     _fontSize = 100.0;
     _isDarkMode = false;
-    // Notify to clear the UI before popping the screen
-    notifyListeners();
+    // Only notify if requested (avoid during disposal)
+    if (notify) {
+      notifyListeners();
+    }
   }
 
   /// Saves the current chapter index as a bookmark.

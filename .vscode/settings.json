@@ -1,0 +1,31 @@
+{
+  // fvm 설정
+  // flutterSdkPaths를 다음과 같이 설정 안하면 global flutter sdk를 사용하게 됨
+  //   "dart.flutterSdkPath": ".fvm/flutter_sdk",
+  //   "dart.flutterSdkPaths": [
+  //     ".fvm/versions"
+  //   ],
+  //   "search.exclude": {
+  //     "**/.fvm": true
+  //   },
+  //   "files.watcherExclude": {
+  //     "**/.fvm": true
+  //   },
+  // editor 설정
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll": "always"
+  },
+  "files.associations": {
+      "*.h": "objective-c",
+      "*.m": "objective-c",
+      "*.mm": "objective-c",
+      "*.cc": "objective-c",
+  },
+  // 기본적으로 80자로 설정되어 있으나, 120자로 변경
+  "dart.lineLength": 120,
+  "IDX.aI.enableInlineCompletion": true,
+  "IDX.aI.enableCodebaseIndexing": true,
+  "cmake.sourceDirectory": "/Users/dev_bh/Desktop/epub/flutter_epub_viewer/macos"
+}

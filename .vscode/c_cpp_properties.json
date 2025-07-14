@@ -1,0 +1,28 @@
+{
+    "configurations": [
+        {
+            "name": "macOS",
+            "includePath": [
+                "${workspaceFolder}/**",
+                // CEF 헤더 파일 경로
+                "${workspaceFolder}/macos/third/cef/include/**",
+                // Flutter macOS 엔진 헤더 파일 경로
+                "${workspaceFolder}/macos/Flutter/ephemeral/.symlinks/flutter/darwin-x64/FlutterMacOS.framework/Headers/**"
+            ],
+            "macFrameworkPath": [
+                // 시스템 프레임워크 경로
+                "/System/Library/Frameworks",
+                "/Library/Frameworks",
+                // Flutter 프레임워크 경로
+                "${workspaceFolder}/macos/Flutter/ephemeral/.symlinks/flutter/darwin-x64",
+                // CEF 프레임워크 경로 (Release 또는 Debug 빌드에 맞게 조정)
+                "${workspaceFolder}/macos/third/cef/Release"
+            ],
+            "compilerPath": "/usr/bin/clang",
+            "cStandard": "c17",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "macos-clang-x64"
+        }
+    ],
+    "version": 4
+}
