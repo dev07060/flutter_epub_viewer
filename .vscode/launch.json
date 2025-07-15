@@ -23,7 +23,8 @@
             "args": [
                 "-d",
                 "macos"
-            ]        },
+            ]        
+        },
         {
             "name": "Flutter (iPad 10)",
             "type": "dart",
